@@ -1,1 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
+    <!-- Parent Coordinates -->
+    <groupId>com.example.aem</groupId>
+    <artifactId>my-aem-project</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- AEM SDK and Plugin Versions -->
+    <properties>
+        <aem.version>6.5.0</aem.version> <!-- Adjust based on your AEM version -->
+        <core.component.version>2.11.0</core.component.version>
+        <aem.plugin.version>29.0.0</aem.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Parent Information -->
+    <parent>
+        <groupId>com.adobe.aem</groupId>
+        <artifactId>aem-project-archetype</artifactId>
+        <version>24</version> <!-- or the latest version of the archetype you used -->
+    </parent>
+
+    <!-- Modules -->
+    <modules>
+        <module>core</module>
+        <module>ui.apps</module>
+        <module>ui.content</module>
+        <!-- Add other modules if necessary -->
+    </modules>
+
+    <!-- Build Plugins -->
+    <build>
+        <plugins>
+            <!-- Plugin for AEM-specific operations -->
+            <plugin>
+                <groupId>com.cognifide.maven.plugins</groupId>
+                <artifactId>aem-plugin</artifactId>
+                <version>${aem.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <sync>
+                        <contentPath>/apps/myproject</contentPath>
+                    </sync>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Repositories -->
+    <repositories>
+        <repository>
+            <id>adobe-public</id>
+            <url>https://repo.adobe.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+</project>
